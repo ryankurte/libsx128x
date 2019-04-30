@@ -16,6 +16,10 @@ Maintainer: Miguel Luis, Matthieu Verdy and Benjamin Boulet
 #ifndef __RADIO_H__
 #define __RADIO_H__
 
+#include <stdint.h>
+
+#include "sx1280.h"
+
 /*!
  * \brief Class holding the basic communications with a radio
  *
