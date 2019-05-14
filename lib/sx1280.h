@@ -32,14 +32,30 @@ extern "C" {
  */
 #define SX1280_DEBUG                                0
 
+typedef int32_t SpiWrite( void* ctx, uint8_t *prefix, uint16_t prefix_len, uint8_t* out, uint16_t out_len );
+typedef int32_t SpiRead( void* ctx, uint8_t *prefix, uint16_t prefix_len, uint8_t* in, uint16_t in_len );
+
+typedef int32_t PinSet( void* ctx, bool value );
+typedef int32_t PinGet( void* ctx );
+
+typedef void DelayMs( void* ctx, uint32_t ms );
+
 /*!
  * \brief Radio device object
  * 
  * \remark This contains bindings to the functions required to interact with a given device instance
  */
 struct SX1280_s {
-    // hal provides an abstract interface to the underlying pin and SPI functions
-    SX1280_hal_t *hal;
+    void* ctx;
+
+    SpiRead     *spi_read;
+    SpiWrite    *spi_write;
+    PinSet      *set_reset;
+    PinGet      *get_busy;
+
+    PinGet      *get_dio[4];
+
+    DelayMs     *delay_ms;
 };
 
 typedef struct SX1280_s SX1280_t;
