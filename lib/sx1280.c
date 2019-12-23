@@ -101,7 +101,7 @@ void SX1280Init( SX1280_t *sx1280, RadioCallbacks_t *callbacks )
 
 void SX1280SetRegistersDefault( SX1280_t *sx1280)
 {
-    for( int16_t i = 0; i < sizeof( RadioRegsInit ) / sizeof( RadioRegisters_t ); i++ )
+    for( uint16_t i = 0; i < sizeof( RadioRegsInit ) / sizeof( RadioRegisters_t ); i++ )
     {
         SX1280HalWriteRegister( sx1280, RadioRegsInit[i].Addr, RadioRegsInit[i].Value );
     }
